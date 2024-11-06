@@ -7,8 +7,6 @@ public class L3Q1 {
 
         System.out.print("Enter the first integer: ");
         double num1 = scanner.nextDouble();
-
-        System.out.print("Enter the second integer: ");
         double num2 = scanner.nextDouble();
 
         System.out.print("Enter the operator (+, -, *, /): ");
@@ -27,6 +25,13 @@ public class L3Q1 {
             case '/':
                 if(num2 != 0) {
                     System.out.println(num1 + " / " + num2 + " = " + String.format("%.2f",(num1 / num2)));
+                } else {
+                    System.out.println("Cannot divide by zero!");
+                }
+                break;
+            case '%':
+                if(num2 != 0) {
+                    System.out.println(num1 + " % " + num2 + " = " + String.format("%.2f",(num1 % num2)));
                 } else {
                     System.out.println("Cannot divide by zero!");
                 }

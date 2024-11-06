@@ -4,9 +4,12 @@ import java.util.Random;
 public class L3Q2 {
     public static void main(String[] args) {
         Random random = new Random();
-        int GeneratedNum = random.nextInt(5)+1;
+        int GeneratedNum = random.nextInt(5);
 
         switch (GeneratedNum) {
+            case 0:
+                System.out.println("0 is zero.");
+                break;
             case 1:
                 System.out.println("1 is one.");
                 break;
@@ -24,6 +27,7 @@ public class L3Q2 {
 
             case 5:
                 System.out.println("5 is five.");
+                break;
         }
     }
 }
