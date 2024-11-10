@@ -1,6 +1,11 @@
 import java.util.Scanner;
 
 public class vivaQ4 {
+
+    private static boolean hasPizzaOrder = false;
+    private static boolean hasDrinksOrder = false;
+    private static boolean hasDessertsOrder = false;
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
@@ -48,7 +53,9 @@ public class vivaQ4 {
         double vegan = 12;
         double beef = 22;
         double margherita = 9;
+
         boolean backToMainMenu = false;
+        boolean PizzaOrder = false;
 
         while (!backToMainMenu) {
             System.out.println("PIZZA");
@@ -61,6 +68,13 @@ public class vivaQ4 {
             System.out.println();
             System.out.print("Pick an option: ");
             int pizzaChoice = scanner.nextInt();
+
+            if(pizzaChoice >= 1 && pizzaChoice <= 5) {
+                PizzaOrder = true;
+            }
+            if(PizzaOrder) {
+                hasPizzaOrder = true;
+            }
 
             switch (pizzaChoice) {
                 case 1 -> {
@@ -106,7 +120,9 @@ public class vivaQ4 {
         double mocktail = 12;
         double softDrinks = 5;
         double mineralWater = 3;
+
         boolean backToMainMenu = false;
+        boolean DrinksOrder = false;
 
         while (!backToMainMenu) {
             System.out.println("DRINKS");
@@ -119,6 +135,13 @@ public class vivaQ4 {
             System.out.println();
             System.out.print("Pick an option: ");
             int drinksChoice = scanner.nextInt();
+
+            if(drinksChoice >= 1 && drinksChoice <= 5) {
+                DrinksOrder = true;
+            }
+            if(DrinksOrder){
+                hasDrinksOrder = true;
+            }
 
             switch (drinksChoice) {
                 case 1 -> {
@@ -164,7 +187,9 @@ public class vivaQ4 {
         double greenJello = 4;
         double cremeBrulle = 15;
         double rashberryPie = 20;
+
         boolean backToMainMenu = false;
+        boolean DessertsOrder = false;
 
         while (!backToMainMenu) {
             System.out.println("DESSERTS");
@@ -177,6 +202,13 @@ public class vivaQ4 {
             System.out.println();
             System.out.print("Pick an option: ");
             int dessertsChoice = scanner.nextInt();
+
+            if(dessertsChoice >= 1 && dessertsChoice <= 5) {
+                DessertsOrder = true;
+            }
+            if(DessertsOrder){
+                hasDessertsOrder = true;
+            }
 
             switch (dessertsChoice) {
                 case 1 -> {
@@ -217,9 +249,21 @@ public class vivaQ4 {
     }
 
     public static void CHECKOUT(double totalBill) {
-        System.out.println("CHECKOUT");
+        System.out.println("[CHECKOUT]");
         System.out.println();
-        System.out.println("Total Bill: RM " + totalBill);
+        
+        if(hasPizzaOrder && hasDrinksOrder && hasDessertsOrder) {
+            double discount = totalBill * 0.20;  // Calculate 20% discount
+            double discountedTotal = totalBill - discount;
+            
+            System.out.println("Original Bill: RM " + totalBill);
+            System.out.println("You ordered from all categories!");
+            System.out.println("20% Discount Applied: -RM " + String.format("%.2f", discount));
+            System.out.println("Final Total Bill: RM " + String.format("%.2f", discountedTotal));
+        } else {
+            System.out.println("Total Bill: RM " + totalBill);
+        }
+        
         System.out.println("Thank you for your order!");
     }
 }
