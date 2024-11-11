@@ -1,31 +1,38 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
-public class vivaQ1{
+public class vivaQ1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a number: ");
-        int num = scanner.nextInt();
+        int num = 0;
+        boolean validInput = false;
 
-        int digitalRoot = getDigitalRoot(num);
-        System.out.println("Sum of digits until single digit: " + digitalRoot);
-
-        scanner.close();
-    }
-
-    public static int getDigitalRoot(int num){
-        while(num > 9){
-            int sum = 0;
-
-            // Using while loop to sum the digits
-            while(num > 0){
-                sum += num % 10; 
-                num /= 10;
+        while (!validInput) {
+            try {
+                System.out.print("Enter a number: ");
+                num = scanner.nextInt();
+                
+                if (num < 0) {
+                    System.out.println("Error: Please enter a positive number!");
+                } else {
+                    validInput = true;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error: Please enter a valid number!");
+                scanner.nextLine(); // Clear invalid input
             }
-
-            // Reset the number to the new sum
-            num = sum;
         }
 
-        return num;
+        do {
+            int sum = 0;
+            while (num > 0) {
+                sum += num % 10;
+                num /= 10;
+            }
+            num = sum;
+        } while (num > 9);
+
+        System.out.println("Sum of digits until single digit: " + num);
+        scanner.close();
     }
 }
