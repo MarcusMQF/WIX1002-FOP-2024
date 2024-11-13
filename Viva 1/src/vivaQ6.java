@@ -48,7 +48,7 @@ public class vivaQ6 {
         
         if(score.get(score.size() - 1) < 0){
             System.out.println("Negative numbers were entered.");
-        } // // This checks if the last score in the sorted list is negative. 
+        } // This checks if the last score in the sorted list is negative. 
 
         scanner.close();
     }
