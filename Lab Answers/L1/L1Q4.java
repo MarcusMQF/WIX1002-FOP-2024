@@ -1,5 +1,3 @@
-package L1;
-
 public class L1Q4 {
     public static void main(String[] args) {
         System.out.println("4. Create a new project named L1Q4. The project will display a chart (bar chart / line chart / pie chart) based on data in the table below. A chart is a graphical representation of data.\n");

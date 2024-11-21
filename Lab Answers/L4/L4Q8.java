@@ -1,4 +1,3 @@
-package L4;
 import java.util.ArrayList;
 import java.util.Random;
 
