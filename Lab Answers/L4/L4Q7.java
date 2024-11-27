@@ -1,45 +1,51 @@
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
-public class L4Q7{
+public class L4Q7 {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter principal amount: ");
+        // Input: Principal, Yearly Interest Rate, Total Number of Months
+        System.out.print("Enter Principal Amount: ");
         double principal = scanner.nextDouble();
 
-        System.out.print("Enter interest rate in %: ");
-        double interestRate = scanner.nextDouble() / 100.0; // Convert to decimal
+        System.out.print("Enter Yearly Interest Rate in %: ");
+        double yearlyInterestRate = scanner.nextDouble();
 
-        System.out.print("Enter total number of months: ");
+        System.out.print("Enter Total Number of Months: ");
         int totalMonths = scanner.nextInt();
 
-        double monthlyPayment = calculateMonthlyPayment(principal, interestRate, totalMonths);
-        System.out.printf("Monthly payment: $%.2f%n", monthlyPayment);
+        // Calculate Monthly Payment (M)
+        double monthlyInterestRate = yearlyInterestRate / (12 * 100);
+        double monthlyPayment = (principal * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -totalMonths));
 
-        System.out.println("\nAmortization Table:");
-        System.out.println("Month\tPrincipal\tInterest\tUnpaid Balance\tTotal Interest");
-        double unpaidBalance = principal;
-        double totalInterest = 0.0;
+        // Print Monthly Payment
+        DecimalFormat df = new DecimalFormat("0.00"); // Ensure two decimal places, including zero
+
+        // Generate Amortization Table
+        System.out.println("\nMonth\tMonthly Payment\tPrincipal\tInterest\tUnpaid Balance\tTotal Interest");
+
+        double remainingPrincipal = principal;
+        double totalInterestPaid = 0;
 
         for (int month = 1; month <= totalMonths; month++) {
-            double interest = calculateInterest(unpaidBalance, interestRate);
-            double principalPayment = monthlyPayment - interest;
-            unpaidBalance -= principalPayment;
-            totalInterest += interest;
+            // Calculate Interest Due (L)
+            double interestDue = remainingPrincipal * monthlyInterestRate;
 
-            System.out.printf("%d\t$%.2f\t$%.2f\t$%.2f\t$%.2f%n",
-                             month, principalPayment, interest, unpaidBalance, totalInterest);
+            // Calculate Principal Portion Due (C)
+            double principalDue = monthlyPayment - interestDue;
+
+            // Update Remaining Principal Balance (R)
+            remainingPrincipal -= principalDue;
+
+            // Update Total Interest Paid
+            totalInterestPaid += interestDue;
+
+            // Print the row
+            System.out.println(month + "\t" + df.format(monthlyPayment) + "\t\t" + df.format(principalDue) + "\t\t" + df.format(interestDue) + "\t\t" + df.format(remainingPrincipal) + "\t\t" + df.format(totalInterestPaid));
         }
 
         scanner.close();
-    }
-
-    public static double calculateMonthlyPayment(double principal, double interestRate, int totalMonths) {
-        double monthlyRate = interestRate / 12.0;
-        return principal * (monthlyRate / (1 - Math.pow(1 + monthlyRate, -totalMonths)));
-    }
-
-    public static double calculateInterest(double unpaidBalance, double interestRate) {
-        return unpaidBalance * (interestRate / 12.0);
     }
 }
