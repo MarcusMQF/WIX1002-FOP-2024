@@ -19,6 +19,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-### Academic Integrity ⚠️
+### ⚠️ Academic Integrity
 
 Note: This repository is meant for educational purposes. Please adhere to UM's academic integrity guidelines when using these materials.
