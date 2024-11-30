@@ -1,12 +1,12 @@
-## WIX1002 Fundamentals of Programming
+# WIX1002 Fundamentals of Programming
 
-### Course Overview
+## Course Overview
 A comprehensive collection of materials and solutions from the WIX1002 Fundamentals of Programming course at University of Malaya (UM). This foundational course is a core requirement for Computer Science students, focusing on Java programming concepts and problem-solving skills. This is a personal solutions and works done by owner.
 
-### Academic Year
+## Academic Year
 2024/2025 Semester 1
 
-### Contents
+## Contents
 The main directories and their contents are as follows:
 
 - Lab Answers
@@ -14,11 +14,11 @@ The main directories and their contents are as follows:
 - Tutorial Answers
 - Viva 
 
-### License
+## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-#### Academic Integrity
+## Academic Integrity
 
 Note: This repository is meant for educational purposes. Please adhere to UM's academic integrity guidelines when using these materials.
