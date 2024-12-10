@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-public class vivaQ1 {
+public class viva1Q1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int num = 0;

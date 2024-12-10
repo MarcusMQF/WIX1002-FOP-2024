@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class vivaQ2{
+public class viva1Q2{
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a number (n, a, b): ");

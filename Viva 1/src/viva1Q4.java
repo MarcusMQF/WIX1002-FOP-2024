@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class vivaQ4 {
+public class viva1Q4 {
 
     private static boolean hasPizzaOrder = false;
     private static boolean hasDrinksOrder = false;

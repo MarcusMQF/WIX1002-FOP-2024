@@ -33,16 +33,22 @@ public class viva2Q6 {
                 System.out.println("Welcome to G101, Kolej Kediaman Kinabalu, Universiti Malaya!");
             }
             System.out.println(initials);
-            if (name.toLowerCase().contains("kah sing") && name.toLowerCase().contains("lee")) {
-                if (name.toLowerCase().indexOf("lee") < name.toLowerCase().indexOf("kah sing")) {
+
+            // Handle special characters in the name
+            String cleanedName = name.replaceAll("[\\s'._-]", " ").toLowerCase();
+            if (cleanedName.contains("kah sing") && cleanedName.contains("lee")) {
+                if (cleanedName.indexOf("lee") < cleanedName.indexOf("kah sing")) {
                     System.out.println("WE KNOW IT'S YOU!");
                 } else {
                     System.out.println("WE KNOW IT'S YOU -- LEE KAH SING!");
                 }
             }
-            if (interval.compareTo("06:00:00") < 0) {
+
+            // Check if the end time is before 06:00:00 AM
+            if (isSleepTime(endTime)) {
                 System.out.println("SLEEP NOW!!!!!!!!!!");
             }
+
             System.out.println(interval);
             System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         }
@@ -51,14 +57,25 @@ public class viva2Q6 {
     }
 
     public static String generateInitials(String name) {
-        String[] parts = name.split("[\\s'-_./]"); // Split by whitespace, apostrophe, dash, underscore, dot, and slash
+        // Remove specific substrings for Malaysian names
+        name = name.replaceAll("\\b(a/l|a/p|al|ap|bin|binti)\\b", "").trim();
+
+        // Split using whitespace, apostrophe, dash, underscore, and dot
+        String[] parts = name.split("[\\s'._-]+");
         StringBuilder initials = new StringBuilder();
+
         for (String part : parts) {
-            if (!part.isEmpty() && !part.equalsIgnoreCase("a/l") && !part.equalsIgnoreCase("a/p") && !part.equalsIgnoreCase("bin") && !part.equalsIgnoreCase("binti")) {
-                initials.append(part.charAt(0)); // Append the first letter of each valid part
+            if (!part.isEmpty()) {
+                initials.append(Character.toUpperCase(part.charAt(0)));
             }
         }
-        return initials.toString().toUpperCase();
+
+        String initialsStr = initials.toString().toUpperCase();
+        if (initialsStr.contains("K") && initialsStr.contains("S") && initialsStr.contains("L")) {
+            return "LKS!!!!!!!!!!";
+        }
+
+        return initialsStr;
     }
 
     public static boolean isPrintingWelcomeMessage(String name) {
@@ -91,5 +108,22 @@ public class viva2Q6 {
         int intervalRemainingSeconds = intervalSeconds % 60;
 
         return String.format("%02d:%02d:%02d", intervalHours, intervalMinutes, intervalRemainingSeconds);
+    }
+
+    public static boolean isSleepTime(String endTime) {
+        // Convert end time to total seconds
+        int endSeconds = convertToSeconds(endTime);
+
+        // Check if the end time is before 06:00:00 AM
+        return endSeconds < convertToSeconds("06:00:00");
+    }
+
+    public static int convertToSeconds(String time) {
+        String[] parts = time.split(":");
+        int hours = Integer.parseInt(parts[0]);
+        int minutes = Integer.parseInt(parts[1]);
+        int seconds = Integer.parseInt(parts[2]);
+
+        return hours * 3600 + minutes * 60 + seconds;
     }
 }
