@@ -154,8 +154,6 @@ class Game {
         enemy.resetHp();
         enemy.resetCd();
 
-        // Remove the call to System.out.println(team); here
-
         int round = 1;
         while (team.hp > 0 && enemy.hp > 0) {
             System.out.println("\nRound " + round); // Blank line before each round
@@ -213,6 +211,7 @@ class Game {
 
 // Test Program
 public class viva3Q6 {
+    @SuppressWarnings("unused")
     public static void main(String[] args) {
         // Initialize heroes
         Hero molly = new Hero("Molly", "Water", 45, 20);
@@ -231,18 +230,27 @@ public class viva3Q6 {
         Hero apollo = new Hero("Apollo", "Light", 55, 16);
         Hero artemis = new Hero("Artemis", "Dark", 50, 23);
 
-        Hero[] heroes = {molly, sean, duncan, nathaniel, endor, urd, skuld, verthandi, idun, valkyrie, poseidon, hephaestus, athena, apollo, artemis};
+        // Create array of all heroes
+        Hero[] heroes = {molly, sean, duncan, nathaniel, endor, urd, skuld, 
+                        verthandi, idun, valkyrie, poseidon, hephaestus, 
+                        athena, apollo, artemis};
 
-        // Initialize villain
+        // Initialize villains
         Villain giemsa = new Villain("Giemsa", "Water", 100, 150, 15, 2);
+        Villain diablo = new Villain("Diablo", "Fire", 120, 163, 13, 3);
+        Villain nidhogg = new Villain("Nidhogg", "Earth", 130, 189, 11, 4);
+        Villain lucifer = new Villain("Lucifer", "Light", 110, 207, 17, 3);
+        Villain odin = new Villain("Odin", "Dark", 135, 196, 14, 5);
 
-        // Create a team and start the battle
+        // Create team and game
         Team team = new Team(heroes);
         Game game = new Game();
 
+        // Form team and display team info
         team.formTeam();
-        System.out.println(team); // Display team details only once
+        System.out.println(team);
 
+        // Start battle with Giemsa
         game.battle(team, giemsa);
     }
 }
